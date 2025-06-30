@@ -4,52 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Weather App</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #74ebd5, #9face6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .container {
-      background-color: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      text-align: center;
-      width: 300px;
-    }
-
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 15px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
-    button {
-      padding: 10px 20px;
-      background-color: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    .result {
-      margin-top: 20px;
-      font-size: 1.2em;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
@@ -58,39 +13,7 @@
     <button onclick="getWeather()">Get Weather</button>
     <div id="weatherResult" class="result"></div>
   </div>
-
-  <script>
-    async function getWeather() {
-      const location = document.getElementById('locationInput').value;
-      const resultDiv = document.getElementById('weatherResult');
-
-      if (!location) {
-        resultDiv.innerHTML = 'Please enter a location.';
-        return;
-      }
-
-      const apiKey = '161fa184f3fb4801b0483839251903';
-      const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(location)}&aqi=yes`;
-
-      try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error('Location not found');
-        const data = await response.json();
-
-        const tempC = data.current.temp_c;
-        const condition = data.current.condition.text;
-        const city = data.location.name;
-        const country = data.location.country;
-
-        resultDiv.innerHTML = `
-          <strong>${city}, ${country}</strong><br>
-          Temperature: ${tempC}°C<br>
-          Condition: ${condition}
-        `;
-      } catch (error) {
-        resultDiv.innerHTML = 'Error: ' + error.message;
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
+
